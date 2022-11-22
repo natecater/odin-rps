@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let getComputerChoice = () => (Math.floor(Math.random()*3) + 1);
+
+        function getPlayerChoice() {
+
+            let choice = prompt("Pick rock, paper, or scissors, duh... ");
+            choice.toLowerCase();
+
+            let result = 0;
+            if (choice == "rock") {
+                result = 1;
+            } else if (choice == "paper") {
+                result = 2;
+            } else if (choice == "scissors") {
+                result = 3;
+            }
+
+            if (result == 0) {
+                console.log("Please enter a valid choice, check your spelling...");
+                getPlayerChoice();
+            } else {
+                return result;
+            }
+
+            
+        }
+
+        function round(playerSelection, computerSelection) {
+            let gameState = "";
+            let upperHand = "";
+            let lowerHand = "";
+
+            if (playerSelection == computerSelection) {
+                return "It's a tie!";
+            } else if (playerSelection == 1 && computerSelection == 2) {
+                gameState = "Lose";
+                upperHand = "Paper";
+                lowerHand = "Rock";
+            } else if (playerSelection == 2 && computerSelection == 3) {
+                gameState = "Lose";
+                upperHand = "Scissors";
+                lowerHand = "Paper";
+            } else if (playerSelection == 1 && computerSelection == 3) {
+                gameState = "Win";
+                upperHand = "Rock";
+                lowerHand = "Scissors";
+            } else if (playerSelection == 2 && computerSelection == 1) {
+                gameState = "Win";
+                upperHand = "Paper";
+                lowerHand = "Rock";
+            } else if (playerSelection == 3 && computerSelection == 2) {
+                gameState = "Win";
+                upperHand = "Scissors";
+                lowerHand = "Paper";
+            } else if (playerSelection == 3 && computerSelection == 1) {
+                gameState = "Lose";
+                upperHand = "Rock";
+                lowerHand = "Scissors";
+            }
+
+            return `You ${gameState}! ${upperHand} beats ${lowerHand}`;
+        };
+    </script>
+</body>
+</html>
