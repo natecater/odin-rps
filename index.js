@@ -1,12 +1,16 @@
 let getComputerChoice = () => (Math.floor(Math.random()*3) + 1);
 
-let rock = document.querySelector("#rock");
-let paper = document.querySelector("#paper");
-let scissors = document.querySelector("#scissors");
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const roundResult = document.querySelector(".round");
+const score = document.querySelector(".score");
+let pScore = 0;
+let cScore = 0;
 
-rock.addEventListener("click", round("rock", getComputerChoice));
-paper.addEventListener("click", round("paper", getComputerChoice));
-scissors.addeventListener("click", round("scissors", getComputerChoice));
+rock.addEventListener("click", round(1));
+paper.addEventListener("click", round(2));
+scissors.addeventListener("click", round(3));
 
 /*
 function getPlayerChoice() {
@@ -35,41 +39,64 @@ function getPlayerChoice() {
 
 */
 
-function round(playerSelection, computerSelection) {
+function round(playerSelection) {
     let gameState = "";
-    let upperHand = "";
-    let lowerHand = "";
+
+    let computerSelection = getComputerChoice();
 
     if (playerSelection == computerSelection) {
-        return "It's a tie!";
-    } else if (playerSelection == 1 && computerSelection == 2) {
-        gameState = "Lose";
-        upperHand = "Paper";
-        lowerHand = "Rock";
-    } else if (playerSelection == 2 && computerSelection == 3) {
-        gameState = "Lose";
-        upperHand = "Scissors";
-        lowerHand = "Paper";
+        gameState = 'Tie';
     } else if (playerSelection == 1 && computerSelection == 3) {
         gameState = "Win";
-        upperHand = "Rock";
-        lowerHand = "Scissors";
     } else if (playerSelection == 2 && computerSelection == 1) {
         gameState = "Win";
-        upperHand = "Paper";
-        lowerHand = "Rock";
     } else if (playerSelection == 3 && computerSelection == 2) {
         gameState = "Win";
-        upperHand = "Scissors";
-        lowerHand = "Paper";
-    } else if (playerSelection == 3 && computerSelection == 1) {
+    } else {
         gameState = "Lose";
-        upperHand = "Rock";
-        lowerHand = "Scissors";
     }
 
-    return `You ${gameState}! ${upperHand} beats ${lowerHand}`;
+    displayResult(gameState);
+    trackGame(gameState);
+
+
+    // return `You ${gameState}! ${upperHand} beats ${lowerHand}`;
 };
+
+function displayResult(state) {
+
+    let result = ``;
+
+    if (state == "Win") {
+        result = `You ${state}! ${playerSelection} beats ${computerSelection}`;
+    } else {
+        result = `You ${state}! ${computerSelection} beats ${computerSelection}`;
+    }
+
+    roundResult.innerText = result;
+}
+
+function trackGame(state) {
+
+    let gameResult = "";
+
+    if (pScore == 5 || cScore == 5) {
+        pScore = 0;
+        cScore = 0;
+    }
+
+    (state == "Win") ? pScore += 1 : cScore += 1;
+
+    let scoreBoard = `Player: ${pScore} Computer: ${cScore}`;
+
+    if (pScore == 5) {
+        gameResult = "Player wins! Game over, can you beat me again?";
+    } else if (cScore == 5) {
+        gameResult = "Computer wins! Better luck next time";
+    }
+
+
+}
 
 function game() {
 
