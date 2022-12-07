@@ -16,34 +16,6 @@ function startRound(e) {
     round(playerChoice);
 }
 
-/*
-function getPlayerChoice() {
-
-    let rawChoice = prompt("Pick rock, paper, or scissors, duh... ");
-    choice = rawChoice.toLowerCase();
-
-    let result = 0;
-    if (choice == "rock") {
-        result = 1;
-    } else if (choice == "paper") {
-        result = 2;
-    } else if (choice == "scissors") {
-        result = 3;
-    }
-
-    if (result == 0) {
-        console.log("Please enter a valid choice, check your spelling...");
-        getPlayerChoice();
-    } else {
-        return result;
-    }
-
-    
-};
-
-*/
-//let getComputerChoice = () => (Math.floor(Math.random()*3) + 1);
-
 function getComputerChoice() {
     let choice = "";
     let number = (Math.floor(Math.random()*3) + 1);
@@ -130,43 +102,3 @@ function trackGame(state) {
 
 
 }
-
-/* 
-function game() {
-
-    console.log("Rock! Paper! Scissors! Best out of 5, let's go");
-
-    let playerWins = 0;
-    let cpuWins = 0;
-    let roundTrack = 5;
-
-    while(roundTrack > 0) {
-        let result = round(getPlayerChoice(), getComputerChoice());
-        
-        console.log(result);
-
-        if (result.includes("Win")) {
-            playerWins += 1;
-        } else if (result.includes("Lose")) {
-            cpuWins += 1;
-        }
-
-        if (playerWins >= 3) {
-            return "Congrats! You won 3 of 5";
-        } else if (cpuWins >= 3) {
-            return "Oh well, try again... you lost 3 of 5";
-        }
-
-        roundTrack--;
-    }
-
-    if (playerWins == cpuWins) {
-        return "Hey, it's a tie try again!";
-    } else if (playerWins >= cpuWins) {
-        return "You won! Not 3 of 5 but still beat the computer.";
-    } else {
-        return "Computer beat you.. not 3 of 5 but still, try again";
-    }
-
-}
-*/
